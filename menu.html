@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>女友專屬菜單</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* 字體 */
+            background-color: #e26391; /* 背景顏色 */
+            color: #333; /* 文字顏色 */
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff; /* 標題顏色 */
+            font-size: 36px; /* 標題大小 */
+        }
+        .menu-category {
+            margin: 20px 0;
+            border: 1px solid #ccc; /* 邊框 */
+            padding: 10px;
+            border-radius: 5px; /* 圓角邊框 */
+            background-color: #ffffff; /* 類別背景顏色 */
+        }
+        .menu-item {
+            margin: 5px 0;
+            font-size: 18px; /* 項目大小 */
+        }
+        button {
+            background-color: #3498db; /* 按鈕背景顏色 */
+            color: white; /* 按鈕文字顏色 */
+            padding: 10px 20px; /* 按鈕內邊距 */
+            border: none; /* 去掉邊框 */
+            border-radius: 5px; /* 圓角按鈕 */
+            cursor: pointer; /* 鼠標懸停時變成手型 */
+            font-size: 18px; /* 按鈕文字大小 */
+        }
+        button:hover {
+            background-color: #2980b9; /* 懸停時按鈕顏色 */
+        }
+    </style>
+    <script>
+        function confirmSelection() {
+            let mainDishes = [];
+            let toppings = [];
+            let drinks = [];
+
+            // 獲取主菜選擇
+            const mainDishCheckboxes = document.querySelectorAll('input[name="mainDish"]:checked');
+            mainDishCheckboxes.forEach((checkbox) => {
+                mainDishes.push(checkbox.value);
+            });
+
+            // 獲取配料選擇
+            const toppingCheckboxes = document.querySelectorAll('input[name="topping"]:checked');
+            toppingCheckboxes.forEach((checkbox) => {
+                toppings.push(checkbox.value);
+            });
+
+            // 獲取飲品選擇
+            const drinkCheckboxes = document.querySelectorAll('input[name="drink"]:checked');
+            drinkCheckboxes.forEach((checkbox) => {
+                drinks.push(checkbox.value);
+            });
+
+            // 顯示選擇結果
+            alert("您選擇的主菜: " + mainDishes.join(", ") + "\n" +
+                  "您選擇的配料: " + toppings.join(", ") + "\n" +
+                  "您選擇的飲品: " + drinks.join(", "));
+        }
+
+        function sendEmail() {
+            let mainDishes = [];
+            let toppings = [];
+            let drinks = [];
+
+            // 獲取主菜選擇
+            const mainDishCheckboxes = document.querySelectorAll('input[name="mainDish"]:checked');
+            mainDishCheckboxes.forEach((checkbox) => {
+                mainDishes.push(checkbox.value);
+            });
+
+            // 獲取配料選擇
+            const toppingCheckboxes = document.querySelectorAll('input[name="topping"]:checked');
+            toppingCheckboxes.forEach((checkbox) => {
+                toppings.push(checkbox.value);
+            });
+
+            // 獲取飲品選擇
+            const drinkCheckboxes = document.querySelectorAll('input[name="drink"]:checked');
+            drinkCheckboxes.forEach((checkbox) => {
+                drinks.push(checkbox.value);
+            });
+
+            // 構建郵件內容
+            const subject = "我的晚餐選擇";
+            const body = "我選擇的主菜: " + mainDishes.join(", ") + "\n" +
+                         "我選擇的配料: " + toppings.join(", ") + "\n" +
+                         "我選擇的飲品: " + drinks.join(", ");
+            
+            // 使用 mailto 發送郵件
+            window.location.href = `mailto:chengmuntong@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    </script>
+</head>
+<body>
+
+    <h1>棠棠揀嘢食</h1>
+
+    <div class="menu-category">
+        <h2>餸 (可選擇多個)</h2>
+        <div class="menu-item"><input type="checkbox" id="dishA" name="mainDish" value="三文魚魚魚"> <label for="dishA">三文魚魚魚</label></div>
+        <div class="menu-item"><input type="checkbox" id="dishB" name="mainDish" value="傻仔牛柳粒"> <label for="dishB">傻仔牛柳粒</label></div>
+        <div class="menu-item"><input type="checkbox" id="dishC" name="mainDish" value="炸傻條"> <label for="dishC">炸傻條</label></div>
+    </div>
+
+    <div class="menu-category">
+        <h2>主食 </h2>
+        <div class="menu-item"><input type="checkbox" id="toppingC" name="topping" value="香椒麵"> <label for="toppingC">香椒麵</label></div>
+        <div class="menu-item"><input type="checkbox" id="toppingD" name="topping" value="芝士麵"> <label for="toppingD">芝士麵</label></div>
+        <div class="menu-item"><input type="checkbox" id="toppingE" name="topping" value="辛辣麵"> <label for="toppingE">辛辣麵</label></div>
+    </div>
+
+    <div class="menu-category">
+        <h2>飲品 (可選擇多個)</h2>
+        <div class="menu-item"><input type="checkbox" id="drinkF" name="drink" value="果然系"> <label for="drinkF">果然系</label></div>
+        <div class="menu-item"><input type="checkbox" id="drinkG" name="drink" value="檸檬可樂"> <label for="drinkG">檸檬可樂</label></div>
+        <div class="menu-item"><input type="checkbox" id="drinkH" name="drink" value="可樂"> <label for="drinkH">可樂</label></div>
+    </div>
+
+    <!-- 確認按鈕 -->
+    <button onclick="confirmSelection()">確認選擇</button>
+
+    <!-- 發送按鈕 -->
+    <button onclick="sendEmail()">發送選擇</button>
+
+</body>
+</html>
